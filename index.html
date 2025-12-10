@@ -6,17 +6,18 @@
     <title>润藏命理 - 专业命理分析服务</title>
     <style>
         :root {
-            --primary-color: #8b0000; /* 深红色 - 传统吉祥色 */
-            --secondary-color: #b8860b; /* 金色 - 富贵吉祥 */
-            --accent-color: #f5deb3; /* 小麦色 - 柔和背景 */
-            --text-color: #333;
-            --light-bg: #f9f3e9; /* 浅米色背景 */
+            --primary-color: #8b4513; /* 深棕色 - 传统古典 */
+            --secondary-color: #d4af37; /* 金色 - 富贵吉祥 */
+            --accent-color: #f5f0e6; /* 米白色 - 柔和背景 */
+            --text-color: #5c3d2e; /* 深褐色文字 */
+            --light-bg: #f9f5ed; /* 浅米色背景 */
             --white: #ffffff;
-            --error-color: #d32f2f;
-            --success-color: #388e3c;
-            --shadow: 0 5px 15px rgba(0,0,0,0.08);
+            --error-color: #c0392b;
+            --success-color: #27ae60;
+            --shadow: 0 5px 20px rgba(139, 69, 19, 0.1);
             --transition: all 0.3s ease;
-            --border-color: #d4b483; /* 传统边框色 */
+            --border-color: #d4af37; /* 金色边框 */
+            --card-bg: rgba(255, 255, 255, 0.95);
         }
         
         * {
@@ -31,32 +32,129 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(139,0,0,0.03)"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><path d="M60,0C26.9,0,0,26.9,0,60s26.9,60,60,60s60-26.9,60-60S93.1,0,60,0z M60,110C32.4,110,10,87.6,10,60S32.4,10,60,10 s50,22.4,50,50S87.6,110,60,110z" fill="rgba(139,69,19,0.03)"/></svg>');
         }
         
-        /* 免责声明滚动条 */
+        /* 免责声明滚动条 - 修复版本 */
         .disclaimer-bar {
-            background-color: #fff8e1;
-            color: #5d4037;
-            padding: 10px 0;
+            background: linear-gradient(90deg, #2c1810, #8b4513, #2c1810);
+            color: #f5f0e6;
+            padding: 12px 0;
             overflow: hidden;
             position: relative;
             font-size: 14px;
-            border-bottom: 2px solid var(--border-color);
+            border-bottom: 3px solid var(--secondary-color);
             z-index: 1001;
             font-family: 'SimSun', serif;
+            height: 45px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .disclaimer-wrapper {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 21px;
         }
         
         .disclaimer-content {
             display: inline-block;
             white-space: nowrap;
-            animation: scroll-text 30s linear infinite;
             padding-left: 100%;
+            animation: scroll-text 25s linear infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         
         @keyframes scroll-text {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        /* 暂停动画的悬停效果 */
+        .disclaimer-wrapper:hover .disclaimer-content {
+            animation-play-state: paused;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background-color: rgba(44, 24, 16, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--secondary-color);
+            backdrop-filter: blur(10px);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-family: 'STHeiti', 'SimSun', serif;
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .logo::before {
+            content: "☯";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 38px;
+            color: var(--secondary-color);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 0;
+            position: relative;
+            font-size: 16px;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         .container {
@@ -72,14 +170,24 @@
         
         h1, h2, h3, h4 {
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 600;
             position: relative;
         }
         
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
         .section-title h2 {
             display: inline-block;
-            padding-bottom: 15px;
+            padding-bottom: 20px;
+            font-size: 36px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .section-title h2::after {
@@ -88,32 +196,105 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 120px;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+            border-radius: 2px;
         }
         
-        p {
-            margin-bottom: 15px;
-            line-height: 1.8;
+        .section-title p {
+            color: #7d6e63;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* 英雄区域 - 高度减半并优化渐变 */
+        .hero {
+            background: linear-gradient(135deg, 
+                rgba(44, 24, 16, 0.95) 0%, 
+                rgba(139, 69, 19, 0.85) 30%, 
+                rgba(184, 134, 11, 0.75) 70%, 
+                rgba(212, 175, 55, 0.65) 100%), 
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,100 L100,0 L100,100 Z" fill="rgba(212,175,55,0.15)"/></svg>');
+            color: white;
+            text-align: center;
+            padding: 80px 0; /* 高度减半 */
+            position: relative;
+            overflow: hidden;
+            min-height: 400px; /* 最小高度确保内容完整显示 */
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 69, 19, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem; /* 稍微减小字体大小以适应减半的高度 */
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            font-family: 'STHeiti', 'SimSun', serif;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+            line-height: 1.7;
+            color: #f5f0e6;
         }
         
         .btn {
             display: inline-block;
-            padding: 14px 32px;
-            background: linear-gradient(135deg, var(--primary-color), #a52a2a);
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--primary-color), #a0522d, var(--secondary-color));
+            background-size: 200% 200%;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 17px;
             transition: var(--transition);
             text-decoration: none;
-            box-shadow: 0 4px 6px rgba(139, 0, 0, 0.1);
-            font-weight: 500;
+            box-shadow: 0 6px 15px rgba(139, 69, 19, 0.3);
+            font-weight: 600;
             letter-spacing: 1px;
             position: relative;
             overflow: hidden;
+            border: 2px solid var(--secondary-color);
+            animation: gradient-shift 3s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
         
         .btn::before {
@@ -124,127 +305,85 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
+            transition: 0.8s;
         }
         
         .btn:hover {
-            background: linear-gradient(135deg, #a52a2a, var(--primary-color));
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(139, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.4);
         }
         
         .btn:hover::before {
             left: 100%;
         }
         
-        /* 导航栏样式 */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 2px solid var(--border-color);
+        /* 宣传图片区域 - 长图布局 */
+        .promo-section {
+            padding: 70px 0;
+            background-color: var(--light-bg);
         }
         
-        .navbar {
+        .promo-images {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
+            flex-direction: column;
+            gap: 35px;
+            max-width: 900px;
+            margin: 0 auto;
         }
         
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--primary-color);
-            font-family: 'STHeiti', 'SimSun', serif;
+        .promo-image-container {
             position: relative;
-            padding-left: 40px;
-        }
-        
-        .logo::before {
-            content: "☯";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 32px;
-            color: var(--secondary-color);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 40px;
-            position: relative;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
             transition: var(--transition);
-            padding: 5px 0;
-            position: relative;
+            border: 2px solid rgba(212, 175, 55, 0.3);
         }
         
-        .nav-links a::after {
-            content: '';
+        .promo-image-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.2);
+            border-color: var(--secondary-color);
+        }
+        
+        .promo-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .promo-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
+            right: 0;
+            background: linear-gradient(to top, rgba(44, 24, 16, 0.9), rgba(44, 24, 16, 0.5), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(10px);
+            opacity: 0;
             transition: var(--transition);
         }
         
-        .nav-links a:hover {
-            color: var(--primary-color);
+        .promo-image-container:hover .promo-overlay {
+            transform: translateY(0);
+            opacity: 1;
         }
         
-        .nav-links a:hover::after {
-            width: 100%;
+        .promo-overlay h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 20px;
         }
         
-        /* 英雄区域 */
-        .hero {
-            background: linear-gradient(135deg, rgba(139, 0, 0, 0.9), rgba(184, 134, 11, 0.8)), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            color: white;
-            text-align: center;
-            padding: 140px 0;
-            position: relative;
-            overflow: hidden;
+        .promo-overlay p {
+            color: #f5f0e6;
+            font-size: 14px;
+            line-height: 1.6;
         }
         
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 25px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            opacity: 0.95;
-            line-height: 1.8;
-        }
-        
-        /* 服务卡片样式 */
+        /* 服务项目 */
         .services {
             background-color: var(--white);
             position: relative;
@@ -257,7 +396,7 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
         }
         
         .services-grid {
@@ -267,13 +406,13 @@
         }
         
         .service-card {
-            background-color: var(--white);
-            border-radius: 10px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
             box-shadow: var(--shadow);
-            padding: 35px 30px;
+            padding: 35px 25px;
             text-align: center;
             transition: var(--transition);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(212, 175, 55, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -290,7 +429,8 @@
         
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+            border-color: var(--secondary-color);
         }
         
         .service-card h3 {
@@ -307,22 +447,23 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
+            width: 60px;
             height: 2px;
             background-color: var(--secondary-color);
         }
         
         .price {
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             color: var(--secondary-color);
             font-weight: bold;
             margin: 20px 0;
             font-family: 'SimSun', serif;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
         
         .price::before {
             content: '¥';
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-right: 5px;
         }
         
@@ -334,8 +475,10 @@
         
         .service-features li {
             margin-bottom: 12px;
-            padding-left: 28px;
+            padding-left: 30px;
             position: relative;
+            color: #7d6e63;
+            font-size: 15px;
         }
         
         .service-features li::before {
@@ -349,13 +492,13 @@
         
         /* 表单样式 */
         .form-container {
-            background-color: var(--white);
-            border-radius: 10px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
             box-shadow: var(--shadow);
             padding: 50px;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            border: 1px solid var(--border-color);
+            border: 2px solid rgba(212, 175, 55, 0.3);
             position: relative;
         }
         
@@ -365,7 +508,7 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
+            width: 120px;
             height: 5px;
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             border-radius: 0 0 5px 5px;
@@ -378,8 +521,8 @@
         label {
             display: block;
             margin-bottom: 10px;
-            font-weight: 500;
-            color: #555;
+            font-weight: 600;
+            color: var(--primary-color);
         }
         
         .required::after {
@@ -389,18 +532,19 @@
         
         input, select, textarea {
             width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 15px;
+            border: 1px solid rgba(139, 69, 19, 0.3);
+            border-radius: 8px;
             font-size: 16px;
             transition: var(--transition);
-            background-color: #f9f9f9;
+            background-color: #f9f5ed;
+            color: var(--text-color);
         }
         
         input:focus, select:focus, textarea:focus {
-            border-color: var(--primary-color);
+            border-color: var(--secondary-color);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
             background-color: white;
         }
         
@@ -413,14 +557,14 @@
         
         .form-row {
             display: flex;
-            gap: 25px;
+            gap: 20px;
         }
         
         .form-row .form-group {
             flex: 1;
         }
         
-        /* 支付选项样式 - 使用真实图标 */
+        /* 支付选项样式 */
         .payment-options {
             display: flex;
             gap: 25px;
@@ -431,17 +575,17 @@
             flex: 1;
             text-align: center;
             padding: 25px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            border-radius: 10px;
             cursor: pointer;
             transition: var(--transition);
             background-color: white;
         }
         
         .payment-option.active {
-            border-color: var(--primary-color);
-            background-color: rgba(139, 0, 0, 0.05);
-            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.1);
+            border-color: var(--secondary-color);
+            background-color: rgba(212, 175, 55, 0.05);
+            box-shadow: 0 8px 20px rgba(139, 69, 19, 0.15);
         }
         
         .payment-icon {
@@ -458,18 +602,6 @@
             height: 40px;
         }
         
-        /* 微信支付图标样式 */
-        #wechat-pay .payment-icon svg {
-            width: 40px;
-            height: 40px;
-        }
-        
-        /* 支付宝图标样式 */
-        #alipay .payment-icon svg {
-            width: 40px;
-            height: 40px;
-        }
-        
         /* 支付弹窗样式 */
         .modal {
             display: none;
@@ -479,23 +611,23 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.7);
             overflow-y: auto;
-            backdrop-filter: blur(3px);
+            backdrop-filter: blur(5px);
         }
         
         .modal-content {
-            background-color: var(--white);
+            background-color: var(--card-bg);
             margin: 5% auto;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             position: relative;
             max-height: 90vh;
             overflow-y: auto;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--secondary-color);
         }
         
         .close {
@@ -509,7 +641,7 @@
         }
         
         .close:hover {
-            color: var(--primary-color);
+            color: var(--secondary-color);
         }
         
         /* 页脚样式 */
@@ -527,7 +659,7 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
         }
         
         .footer-content {
@@ -544,7 +676,7 @@
         }
         
         .footer-column h3 {
-            color: var(--accent-color);
+            color: var(--secondary-color);
             margin-bottom: 25px;
             font-size: 22px;
             position: relative;
@@ -556,7 +688,7 @@
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
+            width: 60px;
             height: 2px;
             background-color: var(--secondary-color);
         }
@@ -578,7 +710,7 @@
         
         .footer-links a:hover {
             color: var(--secondary-color);
-            transform: translateX(5px);
+            transform: translateX(8px);
         }
         
         .copyright {
@@ -590,6 +722,28 @@
         }
         
         /* 响应式设计 */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .promo-images {
+                max-width: 100%;
+            }
+            
+            .form-container {
+                padding: 35px 25px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -605,12 +759,19 @@
                 margin: 0 15px 10px;
             }
             
+            .hero {
+                padding: 60px 0;
+                min-height: 350px;
+            }
+            
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
+                margin-bottom: 15px;
             }
             
             .hero p {
-                font-size: 1.1rem;
+                font-size: 1rem;
+                margin-bottom: 25px;
             }
             
             .form-row {
@@ -634,12 +795,8 @@
             .modal-content {
                 width: 95%;
                 margin: 5% auto;
-                padding: 25px;
+                padding: 30px;
                 max-height: 95vh;
-            }
-            
-            .form-container {
-                padding: 30px 20px;
             }
             
             .service-card {
@@ -647,76 +804,98 @@
             }
             
             .btn {
-                padding: 12px 25px;
-                font-size: 15px;
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+            
+            .promo-overlay {
+                padding: 15px;
+            }
+            
+            .promo-overlay h3 {
+                font-size: 18px;
+            }
+            
+            .disclaimer-content {
+                animation: scroll-text 20s linear infinite;
             }
         }
         
         @media (max-width: 480px) {
             .hero {
-                padding: 100px 0;
+                padding: 50px 0;
+                min-height: 300px;
             }
             
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             
             .section-title h2 {
-                font-size: 1.5rem;
+                font-size: 28px;
             }
             
             .price {
-                font-size: 1.8rem;
+                font-size: 1.9rem;
             }
             
             .logo {
                 font-size: 24px;
-                padding-left: 35px;
+                padding-left: 40px;
             }
             
             .logo::before {
-                font-size: 28px;
+                font-size: 32px;
+            }
+            
+            .form-container {
+                padding: 25px 20px;
+            }
+            
+            .promo-images {
+                gap: 20px;
+            }
+            
+            .disclaimer-content {
+                animation: scroll-text 18s linear infinite;
             }
         }
-        
-        /* 其他样式保持不变... */
-        /* [保留原有的分析过程、成功消息、加载动画等样式] */
         
         /* 支付弹窗内部元素 */
         .order-info {
             background-color: #f8f4e9;
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 25px;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
         
         .order-info p {
-            margin-bottom: 10px;
-            font-size: 15px;
+            margin-bottom: 12px;
+            font-size: 16px;
         }
         
         .fixed-amount-info {
             text-align: center;
             margin: 20px 0;
-            padding: 15px;
-            background-color: #e8f5e9;
-            border-radius: 8px;
-            border: 1px solid #c8e6c9;
-            color: #2e7d32;
+            padding: 18px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            color: var(--primary-color);
         }
         
         .payment-status {
             text-align: center;
             margin: 20px 0;
-            padding: 15px;
+            padding: 20px;
             background-color: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid var(--primary-color);
+            border-radius: 10px;
+            border-left: 5px solid var(--secondary-color);
         }
         
         .payment-actions {
@@ -725,28 +904,28 @@
             justify-content: center;
             margin-top: 25px;
             padding-top: 25px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(139, 69, 19, 0.1);
         }
         
         /* 分析过程样式 */
         .analysis-process {
-            background-color: var(--white);
-            border-radius: 10px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
             box-shadow: var(--shadow);
-            padding: 60px 20px;
-            max-width: 800px;
+            padding: 60px 30px;
+            max-width: 900px;
             margin: 0 auto;
-            border: 1px solid var(--border-color);
+            border: 2px solid rgba(212, 175, 55, 0.3);
         }
         
         .spinner {
-            border: 4px solid rgba(139, 0, 0, 0.1);
+            border: 5px solid rgba(139, 69, 19, 0.1);
             border-radius: 50%;
-            border-top: 4px solid var(--primary-color);
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+            border-top: 5px solid var(--secondary-color);
+            width: 60px;
+            height: 60px;
+            animation: spin 1.2s linear infinite;
+            margin: 0 auto 25px;
         }
         
         @keyframes spin {
@@ -756,18 +935,18 @@
         
         /* 分析结果样式 */
         .analysis-result {
-            background-color: rgba(245, 222, 179, 0.1);
-            border-radius: 8px;
-            border: 1px solid var(--accent-color);
+            background-color: rgba(245, 240, 230, 0.1);
+            border-radius: 10px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
             padding: 35px;
-            margin-top: 30px;
+            margin-top: 35px;
             display: none;
         }
         
         .analysis-result-content {
             font-size: 16px;
             line-height: 1.8;
-            color: #333;
+            color: var(--text-color);
             white-space: pre-wrap;
             font-family: 'SimSun', 'Microsoft YaHei', serif;
         }
@@ -787,29 +966,32 @@
         /* 成功消息样式 */
         .success-message {
             text-align: center;
-            padding: 80px 20px;
-            background-color: var(--white);
-            border-radius: 10px;
+            padding: 80px 30px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
             box-shadow: var(--shadow);
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            border: 2px solid rgba(212, 175, 55, 0.3);
         }
         
         .success-icon {
-            font-size: 80px;
+            font-size: 90px;
             color: var(--success-color);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             line-height: 1;
         }
         
         .success-message h2 {
             color: var(--primary-color);
             margin-bottom: 20px;
+            font-size: 30px;
         }
         
         .success-message p {
-            margin-bottom: 15px;
-            font-size: 18px;
+            margin-bottom: 18px;
+            font-size: 17px;
+            color: #7d6e63;
         }
         
         /* QR码容器样式 */
@@ -827,15 +1009,16 @@
         .qr-code img {
             width: 260px;
             height: 260px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 10px;
+            border: 2px solid rgba(139, 69, 19, 0.2);
+            border-radius: 10px;
+            padding: 12px;
             background-color: white;
         }
         
         .qr-code p {
-            margin-top: 10px;
+            margin-top: 12px;
             font-weight: 600;
+            color: var(--primary-color);
         }
         
         /* 分析步骤样式 */
@@ -849,11 +1032,11 @@
         .analysis-steps::before {
             content: '';
             position: absolute;
-            top: 20px;
+            top: 25px;
             left: 10%;
             right: 10%;
             height: 3px;
-            background-color: #e0e0e0;
+            background-color: rgba(139, 69, 19, 0.2);
             z-index: 1;
         }
         
@@ -867,34 +1050,39 @@
         }
         
         .step-icon {
-            width: 40px;
-            height: 40px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background-color: #e0e0e0;
-            color: #666;
+            background-color: rgba(139, 69, 19, 0.1);
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 20px;
+            margin-bottom: 12px;
             transition: var(--transition);
+            border: 2px solid transparent;
         }
         
         .analysis-step.active .step-icon {
             background-color: var(--primary-color);
             color: white;
             transform: scale(1.1);
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
         }
         
         .analysis-step.completed .step-icon {
             background-color: var(--success-color);
             color: white;
+            border-color: var(--secondary-color);
         }
         
         .analysis-step strong {
-            font-size: 14px;
+            font-size: 15px;
             text-align: center;
-            color: #666;
+            color: #7d6e63;
         }
         
         .analysis-step.active strong {
@@ -903,62 +1091,68 @@
         }
         
         .time-control {
-            background-color: #fff8e1;
-            padding: 15px;
-            border-radius: 8px;
+            background-color: rgba(212, 175, 55, 0.1);
+            padding: 18px;
+            border-radius: 10px;
             margin: 20px 0;
             text-align: center;
-            border: 1px solid #ffecb3;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--primary-color);
         }
         
         .progress-info {
-            background-color: #f5f5f5;
-            padding: 15px;
-            border-radius: 8px;
+            background-color: rgba(139, 69, 19, 0.05);
+            padding: 18px;
+            border-radius: 10px;
             margin: 20px 0;
             text-align: center;
+            color: var(--primary-color);
+            font-weight: 500;
         }
         
         .api-status {
-            padding: 10px 15px;
-            border-radius: 6px;
-            margin: 15px 0;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
             display: none;
+            font-weight: 500;
         }
         
         .api-status.retrying {
-            background-color: #fff3cd;
+            background-color: rgba(212, 175, 55, 0.1);
             color: #856404;
-            border: 1px solid #ffeaa7;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
         
         .api-status.success {
-            background-color: #d4edda;
+            background-color: rgba(39, 174, 96, 0.1);
             color: #155724;
-            border: 1px solid #c3e6cb;
+            border: 1px solid rgba(39, 174, 96, 0.3);
         }
         
         .api-status.error {
-            background-color: #f8d7da;
+            background-color: rgba(192, 57, 43, 0.1);
             color: #721c24;
-            border: 1px solid #f5c6cb;
+            border: 1px solid rgba(192, 57, 43, 0.3);
         }
         
         .word-count {
             text-align: right;
             font-size: 14px;
-            color: #666;
-            margin-top: 20px;
+            color: #7d6e63;
+            margin-top: 25px;
             padding-top: 20px;
-            border-top: 1px dashed #ddd;
+            border-top: 2px dashed rgba(139, 69, 19, 0.2);
         }
     </style>
 </head>
 <body>
     <!-- 免责声明滚动条 -->
     <div class="disclaimer-bar">
-        <div class="disclaimer-content">
-            <strong>重要声明：</strong>本平台提供的命理分析服务仅供娱乐参考，不构成任何实际的人生建议或决策依据。命运掌握在自己手中，请理性对待分析结果，切勿迷信。
+        <div class="disclaimer-wrapper">
+            <div class="disclaimer-content">
+                <strong>重要声明：</strong>本平台提供的命理分析服务仅供娱乐参考，不构成任何实际的人生建议或决策依据。命运掌握在自己手中，请理性对待分析结果，切勿迷信。本服务基于传统命理学说，分析结果仅供参考，不作为投资、医疗、法律等专业领域的决策依据。
+            </div>
         </div>
     </div>
 
@@ -969,6 +1163,7 @@
                 <div class="logo">润藏命理</div>
                 <ul class="nav-links">
                     <li><a href="#home">首页</a></li>
+                    <li><a href="#promo">服务展示</a></li>
                     <li><a href="#services">服务项目</a></li>
                     <li><a href="#contact">联系我们</a></li>
                 </ul>
@@ -983,6 +1178,53 @@
                 <h1>探索命运奥秘，洞悉人生轨迹</h1>
                 <p>基于当代禄命学泰斗梁湘润先生论命体系，为您揭示人生密码，提供精准运势指导</p>
                 <a href="#services" class="btn">立即测算</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 宣传图片区域 - 长图布局 -->
+    <section id="promo" class="promo-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>专业服务展示</h2>
+                <p>了解我们的专业命理服务，选择最适合您的分析方案</p>
+            </div>
+            <div class="promo-images">
+                <!-- 测试验证服务 -->
+                <div class="promo-image-container">
+                    <img src="测试验证服务.png" alt="测试验证服务" class="promo-image">
+                    <div class="promo-overlay">
+                        <h3>测试验证服务</h3>
+                        <p>专业分析八字原局喜忌，解读性格特点，验证过往大运吉凶，提供专业建议与指导，帮助您了解自身命运轨迹。</p>
+                    </div>
+                </div>
+                
+                <!-- 流年运势分析 -->
+                <div class="promo-image-container">
+                    <img src="流年运势分析.png" alt="流年运势分析" class="promo-image">
+                    <div class="promo-overlay">
+                        <h3>流年运势分析</h3>
+                        <p>深入分析八字原局喜忌，解读性格特点，测算当年及往后5年运势，分析事业财运、婚姻感情等人生大事。</p>
+                    </div>
+                </div>
+                
+                <!-- 人生详批服务 -->
+                <div class="promo-image-container">
+                    <img src="人生详批服务.png" alt="人生详批服务" class="promo-image">
+                    <div class="promo-overlay">
+                        <h3>人生详批服务</h3>
+                        <p>全面分析人生每步大运吉凶，分析人生高低点，提供往后关键流年分析和重要人生事项提醒，包含风水建议和个人发展建议。</p>
+                    </div>
+                </div>
+                
+                <!-- 婚缘配对分析 -->
+                <div class="promo-image-container">
+                    <img src="婚姻配对分析.png" alt="婚缘配对分析" class="promo-image">
+                    <div class="promo-overlay">
+                        <h3>婚缘配对分析</h3>
+                        <p>分析双方八字契合度，解读感情发展趋势，提供婚姻稳定性分析和双方性格匹配度分析，给出专业婚姻建议。</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1004,6 +1246,7 @@
                         <li>解读性格特点</li>
                         <li>测算之前每步大运吉凶</li>
                         <li>过往关键流年吉凶验证</li>
+                        <li>专业建议与指导</li>
                     </ul>
                     <button class="btn" onclick="selectService('测试验证服务', 19.9)">立即购买</button>
                 </div>
@@ -1016,7 +1259,8 @@
                         <li>深入分析八字原局喜忌</li>
                         <li>解读性格特点</li>
                         <li>测算当年及往后5年运势</li>
-                        <li>事业财运、婚姻感情等人生大事分析</li>
+                        <li>事业财运、婚姻感情分析</li>
+                        <li>年度建议和注意事项</li>
                     </ul>
                     <button class="btn" onclick="selectService('流年运势分析', 38)">立即购买</button>
                 </div>
@@ -1026,13 +1270,12 @@
                     <h3>人生详批服务</h3>
                     <div class="price">68</div>
                     <ul class="service-features">
-                        <li>深入分析八字原局喜忌</li>
-                        <li>解读性格特点</li>
+                        <li>八字原局喜忌深入分析</li>
+                        <li>性格特点详细解读</li>
                         <li>人生每步大运吉凶分析</li>
-                        <li>人生高低点分析</li>
                         <li>往后关键流年分析</li>
                         <li>重要人生事项提醒</li>
-                        <li>风水建议</li>
+                        <li>风水建议、个人发展建议</li>
                     </ul>
                     <button class="btn" onclick="selectService('人生详批服务', 68)">立即购买</button>
                 </div>
@@ -1042,9 +1285,11 @@
                     <h3>婚缘配对分析</h3>
                     <div class="price">52</div>
                     <ul class="service-features">
-                        <li>分析与伴侣的八字契合度</li>
-                        <li>解读感情发展趋势</li>
-                        <li>提供婚姻建议</li>
+                        <li>双方八字契合度分析</li>
+                        <li>感情发展趋势解读</li>
+                        <li>婚姻稳定性分析</li>
+                        <li>双方性格匹配度分析</li>
+                        <li>婚姻建议和注意事项</li>
                     </ul>
                     <button class="btn" onclick="selectService('婚缘配对分析', 52)">立即购买</button>
                 </div>
@@ -1063,10 +1308,10 @@
                 <form id="user-info-form">
                     <div class="form-group">
                         <label for="service-type" class="required">服务类型</label>
-                        <input type="text" id="service-type" readonly style="background-color: #f0f0f0; font-weight: bold;">
+                        <input type="text" id="service-type" readonly style="background-color: #f9f5ed; font-weight: bold; color: var(--primary-color);">
                     </div>
                     
-                    <h3>个人公历出生信息</h3>
+                    <h3 style="margin-top: 30px; margin-bottom: 20px; color: var(--primary-color);">个人公历出生信息</h3>
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name" class="required">姓名</label>
@@ -1148,7 +1393,7 @@
                     
                     <!-- 伴侣信息区域 -->
                     <div id="partner-info" style="display: none;">
-                        <h3>伴侣信息（用于婚缘配对分析）</h3>
+                        <h3 style="margin-top: 30px; margin-bottom: 20px; color: var(--primary-color);">伴侣信息（用于婚缘配对分析）</h3>
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="partner-name">伴侣姓名</label>
@@ -1221,7 +1466,7 @@
                         </div>
                     </div>
                     
-                    <h3>选择支付方式</h3>
+                    <h3 style="margin-top: 30px; margin-bottom: 20px; color: var(--primary-color);">选择支付方式</h3>
                     <div class="payment-options">
                         <div class="payment-option" id="wechat-pay" onclick="selectPayment('wechat')">
                             <div class="payment-icon">
@@ -1233,8 +1478,8 @@
                                     <path d="M23 21C23 22.1 23.9 23 25 23C26.1 23 27 22.1 27 21C27 19.9 26.1 19 25 19C23.9 19 23 19.9 23 21Z" stroke="white" stroke-width="2"/>
                                 </svg>
                             </div>
-                            <div style="font-weight: 600; color: #333;">微信支付</div>
-                            <div style="font-size: 13px; color: #666; margin-top: 5px;">推荐使用</div>
+                            <div style="font-weight: 600; color: var(--primary-color);">微信支付</div>
+                            <div style="font-size: 14px; color: #7d6e63; margin-top: 8px;">推荐使用</div>
                         </div>
                         <div class="payment-option" id="alipay" onclick="selectPayment('alipay')">
                             <div class="payment-icon">
@@ -1248,17 +1493,17 @@
                                     <path d="M22 24H24V26H22V24Z" fill="white"/>
                                 </svg>
                             </div>
-                            <div style="font-weight: 600; color: #333;">支付宝</div>
-                            <div style="font-size: 13px; color: #666; margin-top: 5px;">安全便捷</div>
+                            <div style="font-weight: 600; color: var(--primary-color);">支付宝</div>
+                            <div style="font-size: 14px; color: #7d6e63; margin-top: 8px;">安全便捷</div>
                         </div>
                     </div>
-                    <div class="error" id="payment-error" style="margin-top: 10px;">请选择支付方式</div>
+                    <div class="error" id="payment-error" style="margin-top: 15px;">请选择支付方式</div>
                     
-                    <div class="form-group" style="margin-top: 35px; display: flex; gap: 15px; justify-content: center;">
+                    <div class="form-group" style="margin-top: 40px; display: flex; gap: 15px; justify-content: center;">
                         <button type="button" class="btn" id="submit-btn" onclick="submitForm()">立即支付</button>
-                        <button type="button" class="btn" style="background: linear-gradient(135deg, #6c757d, #5a6268);" 
-                                onmouseover="this.style.background='linear-gradient(135deg, #5a6268, #6c757d)'"
-                                onmouseout="this.style.background='linear-gradient(135deg, #6c757d, #5a6268)'"
+                        <button type="button" class="btn" style="background: linear-gradient(135deg, #7d6e63, #5c3d2e); border-color: #d4af37;" 
+                                onmouseover="this.style.background='linear-gradient(135deg, #5c3d2e, #7d6e63)'"
+                                onmouseout="this.style.background='linear-gradient(135deg, #7d6e63, #5c3d2e)'"
                                 onclick="resetForm()">重新选择服务</button>
                     </div>
                 </form>
@@ -1270,14 +1515,14 @@
     <div id="payment-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 style="color: var(--primary-color);">支付订单</h3>
+                <h3 style="color: var(--primary-color); text-align: center; margin-bottom: 20px;">支付订单</h3>
                 <span class="close" onclick="closePaymentModal()">&times;</span>
             </div>
             <div class="modal-body">
                 <div class="order-info">
-                    <p><strong>服务类型:</strong> <span id="payment-service-type" style="color: var(--primary-color);"></span></p>
-                    <p><strong>订单金额:</strong> <span id="payment-amount" style="color: var(--secondary-color); font-weight: bold;"></span></p>
-                    <p><strong>订单号:</strong> <span id="payment-order-id" style="color: #666;"></span></p>
+                    <p><strong>服务类型:</strong> <span id="payment-service-type" style="color: var(--primary-color); font-weight: 600;"></span></p>
+                    <p><strong>订单金额:</strong> <span id="payment-amount" style="color: var(--secondary-color); font-weight: bold; font-size: 17px;"></span></p>
+                    <p><strong>订单号:</strong> <span id="payment-order-id" style="color: #7d6e63;"></span></p>
                 </div>
                 
                 <div class="fixed-amount-info">
@@ -1297,14 +1542,14 @@
                 
                 <div class="payment-status">
                     <p id="payment-status-text">请使用微信/支付宝扫描上方二维码完成支付</p>
-                    <p style="font-size: 14px; color: #666; margin-top: 5px;">支付完成后请点击"我已支付"按钮</p>
+                    <p style="font-size: 14px; color: #7d6e63; margin-top: 8px;">支付完成后请点击"我已支付"按钮</p>
                 </div>
                 
                 <div class="payment-actions">
                     <button class="btn" onclick="confirmPayment()">我已支付</button>
-                    <button class="btn" style="background: linear-gradient(135deg, #6c757d, #5a6268);" 
-                            onmouseover="this.style.background='linear-gradient(135deg, #5a6268, #6c757d)'"
-                            onmouseout="this.style.background='linear-gradient(135deg, #6c757d, #5a6268)'"
+                    <button class="btn" style="background: linear-gradient(135deg, #7d6e63, #5c3d2e); border-color: #d4af37;" 
+                            onmouseover="this.style.background='linear-gradient(135deg, #5c3d2e, #7d6e63)'"
+                            onmouseout="this.style.background='linear-gradient(135deg, #7d6e63, #5c3d2e)'"
                             onclick="closePaymentModal()">取消支付</button>
                 </div>
             </div>
@@ -1315,8 +1560,8 @@
     <section id="analysis-process-section" class="analysis-process" style="display: none;">
         <div class="container">
             <div class="spinner"></div>
-            <h3>润藏命理团队正在为您分析</h3>
-            <p>基于您的出生信息和求测事项，我们的专业命理师团队正在深入分析...</p>
+            <h3 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">润藏命理团队正在为您分析</h3>
+            <p style="text-align: center; color: #7d6e63; max-width: 700px; margin: 0 auto 25px;">基于您的出生信息和求测事项，我们的专业命理师团队正在深入分析...</p>
             
             <div class="time-control">
                 <p>⏱️ 分析时间大约在3-5分钟，请耐心等待不要关闭</p>
@@ -1349,7 +1594,10 @@
                 <div class="result-actions">
                     <button class="btn" onclick="copyResult()">复制结果</button>
                     <button class="btn" onclick="downloadResult()">下载报告(TXT)</button>
-                    <button class="btn" style="background-color: #6c757d;" onclick="goToHome()">返回首页</button>
+                    <button class="btn" style="background: linear-gradient(135deg, #7d6e63, #5c3d2e); border-color: #d4af37;" 
+                            onmouseover="this.style.background='linear-gradient(135deg, #5c3d2e, #7d6e63)'"
+                            onmouseout="this.style.background='linear-gradient(135deg, #7d6e63, #5c3d2e)'"
+                            onclick="goToHome()">返回首页</button>
                 </div>
             </div>
         </div>
@@ -1362,8 +1610,8 @@
             <h2>支付成功！</h2>
             <p>您的订单已提交成功，润藏命理团队正在为您分析</p>
             <p>分析结果将在下方展示</p>
-            <p>订单号: <span id="order-id"></span></p>
-            <div style="margin-top: 30px;">
+            <p>订单号: <span id="order-id" style="font-weight: 600; color: var(--primary-color);"></span></p>
+            <div style="margin-top: 35px;">
                 <button class="btn" onclick="goToHome()">返回首页</button>
             </div>
         </div>
@@ -1375,7 +1623,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>润藏命理</h3>
-                    <p>专业命理师团队分析平台，结合传统智慧与现代技术，为您提供精准的命运解读和人生指导。</p>
+                    <p style="color: #d7ccc8; line-height: 1.7;">专业命理师团队分析平台，结合传统智慧与现代技术，为您提供精准的命运解读和人生指导。</p>
                 </div>
                 <div class="footer-column">
                     <h3>服务项目</h3>
@@ -1401,6 +1649,7 @@
         </div>
     </footer>
 
+    <!-- JavaScript部分保持不变 -->
     <script>
         // DeepSeek API密钥
         const DEEPSEEK_API_KEY = 'sk-0c763bf4e169413dbd57a45e8ca73a6a';
@@ -2341,6 +2590,4 @@ ${cleanedResult}
         };
     </script>
 </body>
-
 </html>
-
